@@ -1,6 +1,8 @@
 var weegoinApp = angular.module('weegoinApp', [
 	'ngRoute',
-	'weegoinApp.controllers'
+	'weegoinApp.controllers',
+	'weegoinApp.services',
+	'weegoinApp.directives',
 ]);
 
 weegoinApp.config(['$routeProvider', '$locationProvider',

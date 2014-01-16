@@ -1,16 +1,5 @@
 var weegoinControllers = angular.module('weegoinApp.controllers', []);
 
-weegoinControllers.controller('BodyCtrl',
-
-	['$scope', '$http', '$location',
-
-	function($scope, $http, $location) {
-		$scope.nav = function(p) {
-			$location.path(p)
-		}
-	}
-])
-
 weegoinControllers.controller('MainMenuCtrl',
 
 	['$scope', '$http', '$location',
