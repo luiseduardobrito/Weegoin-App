@@ -1,0 +1,1 @@
+var weegoinServices = angular.module('weegoinApp.services', []);
