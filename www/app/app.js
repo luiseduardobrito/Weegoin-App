@@ -27,12 +27,12 @@ weegoinApp.config(['$routeProvider', '$locationProvider',
 				controller: 'PlaceEventCtrl'	
 			})
 
-			.when('/events', {
+			.when('/event/public', {
 				templateUrl: 'views/events_public.html',
 				controller: 'PublicEventCtrl'	
 			})
 
-			.when('/event/:id', {
+			.when('/event/private', {
 				templateUrl: 'views/event_private.html',
 				controller: 'PrivateEventCtrl'	
 			})

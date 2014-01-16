@@ -2,9 +2,9 @@ var weegoinControllers = angular.module('weegoinApp.controllers', []);
 
 weegoinControllers.controller('MainMenuCtrl',
 
-	['$scope', '$http', '$location',
+	['$scope', '$http', '$location', 'userService',
 
-	function($scope, $http, $location) {
+	function($scope, $http, $location, $user) {
 
 		$scope.selectedIndex = 0;
 
