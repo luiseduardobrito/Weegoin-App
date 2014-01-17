@@ -2,7 +2,7 @@ var weegoinControllers = angular.module('weegoinApp.controllers', []);
 
 weegoinControllers.controller('MainMenuCtrl',
 
-	['$scope', '$http', '$location', 'userService',
+	['$scope', '$http', '$location',
 
 	function($scope, $http, $location, $user) {
 
@@ -15,7 +15,7 @@ weegoinControllers.controller('MainMenuCtrl',
 			{n: 2, label: "Perfil", value: "profile"},
 			{n: 3, label: "Configurações", value: "settings"},
 			{n: 4, label: "Contato", value: "contact"},
-			{n: 4, label: "Sair", value: "logout"},
+			{n: 5, label: "Sair", value: "logout"},
 		]
 
 		$scope.state = function(s) {
@@ -63,22 +63,37 @@ weegoinControllers.controller('PlaceEventCtrl',
 
 weegoinControllers.controller('PublicEventCtrl', 
 
-	['$scope', '$http', '$location',
+	['$scope', '$http', '$location', 'device',
 
-	function($scope, $http, $location) {
+	function($scope, $http, $location, $device) {
 		
 		$scope.share = function() {
-			window.plugins.socialsharing.share('Message and subject', 'The subject')
+
+			$device.share({
+				message: "Mensagem exemplo",
+				subject: "weego.in",
+				image: 'https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-prn2/1395200_477436185703086_1623485670_n.jpg',
+				link: 'http://weego.in'
+			})
 		}
 	}
 ])
 
 weegoinControllers.controller('PrivateEventCtrl', 
 
-	['$scope', '$http', '$location',
+	['$scope', '$http', '$location', 'device',
 
-	function($scope, $http, $location) {
-		return null;		
+	function($scope, $http, $location, $device) {
+		
+		$scope.share = function() {
+
+			$device.share({
+				message: "Mensagem exemplo",
+				subject: "weego.in",
+				image: 'https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-prn2/1395200_477436185703086_1623485670_n.jpg',
+				link: 'http://weego.in'
+			})
+		}
 	}
 ])
 
@@ -93,13 +108,18 @@ weegoinControllers.controller('ContactCtrl',
 
 weegoinControllers.controller('LogoutCtrl', 
 
-	['$scope', '$http', '$location',
+	['$scope', '$http', '$location', 'device', 'storageService',
 
-	function($scope, $http, $location) {
+	function($scope, $http, $location, $device, $storage) {
 
-		navigator.notification.alert(
-			'You are the winner!',  function(){},
-			'Game Over', 'Done'
-		);
+		var response = $device.confirm("Tem certeza que deseja sair?")
+
+		if(response) {
+
+			$storage.clear();
+			$device.alert("Seus dados foram removidos do dispositivo com sucesso!");
+		}
+
+		$location.path("places");
 	}
 ])

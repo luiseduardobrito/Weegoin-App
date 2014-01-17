@@ -153,17 +153,55 @@ weegoinServices.factory("storageService",
 	}
 ]);
 
-weegoinServices.factory("userService", 
+weegoinServices.factory("device", 
 	
-	['$http', 'storageService',
+	['$http', 'storageService', 'logService',
 
-	function($http, $storage) {
+	function($http, $storage, $log) {
 
 		var _this = this;
 		var _public = {};
 
+		_this.sharePlugin = null;
+
 		_this.init = function(){
+
+			if(!window["plugins"] || !window["plugins"]["socialsharing"]) {
+				$log.error("share", "No sharing plugin available");
+			}
+
+			else {
+				_this.sharePlugin = window.plugins.socialsharing
+			}
 			return _public;
+		}
+
+		_public.share = function(opts) {
+
+			opts = opts || {};
+			
+			_this.sharePlugin.share(
+				opts.message, 
+				opts.subject, 
+				opts.image, 
+				opts.link
+			);
+		}
+
+
+		// TODO: access alert boxes from cordova!
+		
+		// encapsulating alert boxes
+		_public.alert = function(msg) {
+			return window.alert(msg);
+		}
+
+		_public.confirm = function(msg) {
+			return window.confirm(msg)
+		};
+
+		_public.prompt = function(msg) {
+			return window.prompt(msg);
 		}
 
 		return _this.init();

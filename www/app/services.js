@@ -153,7 +153,7 @@ weegoinServices.factory("storageService",
 	}
 ]);
 
-weegoinServices.factory("shareService", 
+weegoinServices.factory("device", 
 	
 	['$http', 'storageService', 'logService',
 
@@ -162,7 +162,7 @@ weegoinServices.factory("shareService",
 		var _this = this;
 		var _public = {};
 
-		_this.plugin = null;
+		_this.sharePlugin = null;
 
 		_this.init = function(){
 
@@ -171,15 +171,37 @@ weegoinServices.factory("shareService",
 			}
 
 			else {
-				_this.plugin = window.plugins.socialsharing
+				_this.sharePlugin = window.plugins.socialsharing
 			}
 			return _public;
 		}
 
-		_public.show = function(opts) {
+		_public.share = function(opts) {
 
 			opts = opts || {};
-			_this.plugin.share(opts.message, opts.subject, opts.image, opts.link);
+			
+			_this.sharePlugin.share(
+				opts.message, 
+				opts.subject, 
+				opts.image, 
+				opts.link
+			);
+		}
+
+
+		// TODO: access alert boxes from cordova!
+		
+		// encapsulating alert boxes
+		_public.alert = function(msg) {
+			return window.alert(msg);
+		}
+
+		_public.confirm = function(msg) {
+			return window.confirm(msg)
+		};
+
+		_public.prompt = function(msg) {
+			return window.prompt(msg);
 		}
 
 		return _this.init();
