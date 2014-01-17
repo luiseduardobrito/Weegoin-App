@@ -153,17 +153,33 @@ weegoinServices.factory("storageService",
 	}
 ]);
 
-weegoinServices.factory("userService", 
+weegoinServices.factory("shareService", 
 	
-	['$http', 'storageService',
+	['$http', 'storageService', 'logService',
 
-	function($http, $storage) {
+	function($http, $storage, $log) {
 
 		var _this = this;
 		var _public = {};
 
+		_this.plugin = null;
+
 		_this.init = function(){
+
+			if(!window["plugins"] || !window["plugins"]["socialsharing"]) {
+				$log.error("share", "No sharing plugin available");
+			}
+
+			else {
+				_this.plugin = window.plugins.socialsharing
+			}
 			return _public;
+		}
+
+		_public.show = function(opts) {
+
+			opts = opts || {};
+			_this.plugin.share(opts.message, opts.subject, opts.image, opts.link);
 		}
 
 		return _this.init();

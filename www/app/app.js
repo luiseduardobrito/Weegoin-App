@@ -28,7 +28,7 @@ weegoinApp.config(['$routeProvider', '$locationProvider',
 			})
 
 			.when('/event/public', {
-				templateUrl: 'views/events_public.html',
+				templateUrl: 'views/event_public.html',
 				controller: 'PublicEventCtrl'	
 			})
 
@@ -40,6 +40,11 @@ weegoinApp.config(['$routeProvider', '$locationProvider',
 			.when('/contact', {
 				templateUrl: 'views/contact.html',
 				controller: 'ContactCtrl'	
+			})
+
+			.when('/logout', {
+				templateUrl: 'views/home.html',
+				controller: 'LogoutCtrl'	
 			})
 
 			.otherwise({

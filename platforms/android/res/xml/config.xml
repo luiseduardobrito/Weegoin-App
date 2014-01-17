@@ -10,6 +10,9 @@
     <feature name="App">
         <param name="android-package" value="org.apache.cordova.App" />
     </feature>
+    <feature name="SocialSharing">
+        <param name="android-package" value="nl.xservices.plugins.SocialSharing" />
+    </feature>
     <name>weegoin</name>
     <description>
         weegoin app
@@ -57,5 +60,7 @@
     <gap:splash gap:platform="ios" height="1024" src="res/screen/ios/screen-ipad-portrait.png" width="768" />
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
+    <gap:plugin name="nl.x-services.plugins.socialsharing" version="3.6" />
     <access origin="http://127.0.0.1*" />
+    <plugin name="Notification" value="org.apache.cordova.Notification" />
 </widget>

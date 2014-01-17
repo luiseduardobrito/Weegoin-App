@@ -23,6 +23,7 @@
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/icon.png \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/spec \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/config.xml \
+/home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/plugins \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/views \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/step-html/contact.html \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/step-html/contact-iframe.html \
@@ -176,6 +177,9 @@
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/spec/lib/jasmine-1.2.0/jasmine-html.js \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/spec/lib/jasmine-1.2.0/MIT.LICENSE \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/spec/lib/jasmine-1.2.0/jasmine.css \
+/home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/plugins/nl.x-services.plugins.socialsharing \
+/home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/plugins/nl.x-services.plugins.socialsharing/www \
+/home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/plugins/nl.x-services.plugins.socialsharing/www/SocialSharing.js \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/views/event_private.html \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/views/contact.html \
 /home/luiseduardo14/Projects/freelas/weegoin/platforms/android/assets/www/views/list.html \

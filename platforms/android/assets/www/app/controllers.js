@@ -2,9 +2,9 @@ var weegoinControllers = angular.module('weegoinApp.controllers', []);
 
 weegoinControllers.controller('MainMenuCtrl',
 
-	['$scope', '$http', '$location',
+	['$scope', '$http', '$location', 'userService',
 
-	function($scope, $http, $location) {
+	function($scope, $http, $location, $user) {
 
 		$scope.selectedIndex = 0;
 
@@ -15,6 +15,7 @@ weegoinControllers.controller('MainMenuCtrl',
 			{n: 2, label: "Perfil", value: "profile"},
 			{n: 3, label: "Configurações", value: "settings"},
 			{n: 4, label: "Contato", value: "contact"},
+			{n: 4, label: "Sair", value: "logout"},
 		]
 
 		$scope.state = function(s) {
@@ -65,7 +66,10 @@ weegoinControllers.controller('PublicEventCtrl',
 	['$scope', '$http', '$location',
 
 	function($scope, $http, $location) {
-		return null;		
+		
+		$scope.share = function() {
+			window.plugins.socialsharing.share('Message and subject', 'The subject')
+		}
 	}
 ])
 
@@ -84,5 +88,18 @@ weegoinControllers.controller('ContactCtrl',
 
 	function($scope, $http, $location) {
 		return null;		
+	}
+])
+
+weegoinControllers.controller('LogoutCtrl', 
+
+	['$scope', '$http', '$location',
+
+	function($scope, $http, $location) {
+
+		navigator.notification.alert(
+			'You are the winner!',  function(){},
+			'Game Over', 'Done'
+		);
 	}
 ])
