@@ -13,7 +13,18 @@ weegoinApp.config(['$routeProvider', '$locationProvider',
 				redirectTo: "/places"
 			})
 
+			.when('/login', {
+				controller: 'LoginCtrl',
+				templateUrl: 'views/list.html'
+			})
+
+			.when('/logout', {
+				controller: 'LogoutCtrl',
+				templateUrl: 'views/list.html'
+			})
+
 			.when('/places', {
+				controller: 'PlacesCtrl',
 				templateUrl: 'views/list.html'
 			})
 
@@ -40,11 +51,6 @@ weegoinApp.config(['$routeProvider', '$locationProvider',
 			.when('/contact', {
 				templateUrl: 'views/contact.html',
 				controller: 'ContactCtrl'	
-			})
-
-			.when('/logout', {
-				templateUrl: 'views/home.html',
-				controller: 'LogoutCtrl'	
 			})
 
 			.otherwise({

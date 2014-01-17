@@ -207,3 +207,43 @@ weegoinServices.factory("device",
 		return _this.init();
 	}
 ]);
+
+weegoinServices.factory("user", 
+	
+	['$http', 'storageService', 'logService',
+
+	function($http, $storage, $log) {
+
+		var _this = this;
+		var _public = {};
+
+		_this.me = null;
+
+		_this.init = function() {
+
+			_this.me = $storage.get("user");
+			return _public;
+		}
+
+		_public.me = function(){
+			return _this.me;
+		}
+
+		_public.login = function(n) {
+
+			_this.me = {
+				name: n
+			};
+
+			$storage.set("user", _this.me);
+		}
+
+		_public.logout = function() {
+
+			_this.me = false;
+			$storage.set("user", null);
+		}
+
+		return _this.init();
+	}
+]);

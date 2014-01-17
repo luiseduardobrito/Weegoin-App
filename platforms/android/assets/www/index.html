@@ -132,16 +132,16 @@
 					
 					<aside id="sidemenu-container">
 						<div id="sidemenu">
-							<div id="author-profile">
+							<div id="author-profile" ng-if="user">
 								<div class="author-profile-photo">
 									<img src="static/assets/avatar.png" alt="">
 								</div>
 								<div class="author-profile-content">
 									<p class="title">
-										Usuário Teste
+										{{ user.name }}
 									</p>
 									<p class="subtitle">
-										@usuarioteste
+										{{ user.name.toLowerCase() }}
 									</p>
 								</div>
 							</div>

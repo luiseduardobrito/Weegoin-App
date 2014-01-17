@@ -123,30 +123,39 @@
 		<!-- Container -->
 			
 			<div id="container">
-			
-					
-					
+							
 					<!-- Main Content-->
 					
 					<!-- Sidebar -->
 					
-					<aside id="sidemenu-container">
+					<aside id="sidemenu-container" ng-controller="MainMenuCtrl">
 						<div id="sidemenu">
-							<div id="author-profile">
+							<div id="author-profile" ng-if="user.name">
 								<div class="author-profile-photo">
 									<img src="static/assets/avatar.png" alt="">
 								</div>
 								<div class="author-profile-content">
 									<p class="title">
-										Usuário Teste
+										{{ user.name }}
 									</p>
 									<p class="subtitle">
-										@usuarioteste
+										<a href="javascript:void(0)" ng-click="goto('logout')">Sair</a>
 									</p>
 								</div>
 							</div>
+
+							<nav ng-if="!user.name">
+								<p>&nbsp;</p>
+								<ul class="nav">
+									<li class='current'>
+										<a ng-click="goto('login')" href="javascript:;">Entrar</a>
+									</li>
+								</ul>
+								<p>&nbsp;</p>
+							</nav>
+
 							<nav id="nav-container">
-								<ul class="nav" ng-controller="MainMenuCtrl">
+								<ul class="nav">
 									<li class='current' ng-repeat="item in items">
 										<a ng:class="state({{ item.n }})" ng-click="goto('{{ item.value }}')" href="javascript:;">
 											{{ item.label }}
