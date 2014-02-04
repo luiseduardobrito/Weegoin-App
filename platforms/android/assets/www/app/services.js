@@ -236,6 +236,10 @@ weegoinServices.factory("user",
 						nativeInterface: CDV.FB
 					});
 
+					FB.Event.subscribe('auth.login', function(response) {
+						console.log('auth.login event');
+					});
+
 				} catch (e) {
 					console.error(e);
 				}
@@ -255,14 +259,13 @@ weegoinServices.factory("user",
 
 			FB.login(function(response) {
 
-				if (response.session) {
+				console.log("fb_login_callback")
+				console.log(response)
 
-					alert('logged in');
+				if (response.session) {
 					fn(null, response);
 
 				} else {
-
-					alert('not logged in');
 					fn(response, null)
 				}
 

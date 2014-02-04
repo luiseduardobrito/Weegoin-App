@@ -49,10 +49,20 @@ weegoinControllers.controller('LoginCtrl',
 
 		$user.login(function(err, res) {
 
-			if(err)
+
+			console.log("controller login callback")
+
+			if (response.authResponse) {
+				FB.api('/me', function(response) {
+					alert('Good to see you, ' + response.name + '.');
+					console.log(response)
+				});
+			} else {
+
+				alert('User cancelled login or did not fully authorize.');
+				console.log("fb_login_error")
 				console.log(err)
-			else
-				console.log(res)
+   			}
 		})
 
 		$location.path("places");
