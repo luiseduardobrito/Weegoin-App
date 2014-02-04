@@ -222,6 +222,44 @@ weegoinServices.factory("user",
 		_this.init = function() {
 
 			_this.me = $storage.get("user");
+
+			document.addEventListener('deviceready', function() {
+
+				try {
+
+					console.log("fb_init")
+
+					//Initialize the Facebook SDK
+					//See https://developers.facebook.com/docs/reference/javascript/
+					window.fbAsyncInit = function() {
+
+						FB.init({ 
+							appId: '1446634675566039',
+							status: true,
+							cookie: true,
+							xfbml: true,
+							frictionlessRequests: true,
+							useCachedDialogs: true,
+							oauth: true
+						});
+					};
+
+
+					// Load the SDK Asynchronously
+					(function(d){
+					var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+					if (d.getElementById(id)) {return;}
+					js = d.createElement('script'); js.id = id; js.async = true;
+					js.src = "//connect.facebook.net/en_US/all.js";
+					ref.parentNode.insertBefore(js, ref);
+					}(document));
+
+				} catch (e) {
+					console.error(e);
+				}
+
+			}, false);
+
 			return _public;
 		}
 
@@ -229,19 +267,74 @@ weegoinServices.factory("user",
 			return _this.me;
 		}
 
-		_public.login = function(n) {
+		_public.login = function(fn) {
 
-			_this.me = {
-				name: n
-			};
+			fn = fn || function(){};
 
-			$storage.set("user", _this.me);
+			FB.login(function(response) {
+
+				if (response.session) {
+
+					alert('logged in');
+					fn(null, response);
+
+				} else {
+
+					alert('not logged in');
+					fn(response, null)
+				}
+
+			}, {
+				scope: "email" 
+			});
 		}
 
 		_public.logout = function() {
 
 			_this.me = false;
 			$storage.set("user", null);
+		}
+
+		return _this.init();
+	}
+]);
+
+weegoinServices.factory("place", 
+	
+	['$http', 'storageService', 'logService',
+
+	function($http, $storage, $log) {
+
+		var _this = this;
+		var _public = {};
+
+		_this.me = null;
+
+		_this.init = function() {
+
+			_this.me = $storage.get("user");
+			return _public;
+		}
+
+		return _this.init();
+	}
+]);
+
+weegoinServices.factory("event", 
+	
+	['$http', 'storageService', 'logService',
+
+	function($http, $storage, $log) {
+
+		var _this = this;
+		var _public = {};
+
+		_this.me = null;
+
+		_this.init = function() {
+
+			_this.me = $storage.get("user");
+			return _public;
 		}
 
 		return _this.init();

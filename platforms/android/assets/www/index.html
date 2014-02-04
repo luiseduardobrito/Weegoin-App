@@ -123,16 +123,14 @@
 		<!-- Container -->
 			
 			<div id="container">
-			
-					
-					
+							
 					<!-- Main Content-->
 					
 					<!-- Sidebar -->
 					
-					<aside id="sidemenu-container">
+					<aside id="sidemenu-container" ng-controller="MainMenuCtrl">
 						<div id="sidemenu">
-							<div id="author-profile" ng-if="user">
+							<div id="author-profile" ng-if="user.name">
 								<div class="author-profile-photo">
 									<img src="static/assets/avatar.png" alt="">
 								</div>
@@ -141,12 +139,23 @@
 										{{ user.name }}
 									</p>
 									<p class="subtitle">
-										{{ user.name.toLowerCase() }}
+										<a href="javascript:void(0)" ng-click="goto('logout')">Sair</a>
 									</p>
 								</div>
 							</div>
+
+							<nav ng-if="!user.name">
+								<p>&nbsp;</p>
+								<ul class="nav">
+									<li class='current'>
+										<a ng-click="goto('login')" href="javascript:;">Entrar</a>
+									</li>
+								</ul>
+								<p>&nbsp;</p>
+							</nav>
+
 							<nav id="nav-container">
-								<ul class="nav" ng-controller="MainMenuCtrl">
+								<ul class="nav">
 									<li class='current' ng-repeat="item in items">
 										<a ng:class="state({{ item.n }})" ng-click="goto('{{ item.value }}')" href="javascript:;">
 											{{ item.label }}
@@ -230,6 +239,8 @@
 			<script type="text/javascript" src="phonegap.js"></script>
 			<script type="text/javascript" charset="utf-8" src="js/cordova-2.0.0.js"></script>
 			<script type="text/javascript" src="plugins/share.js"></script>
+  			<script type="text/javascript" src="lib/cdv-plugin-fb-connect.js"></script>
+  			<script type="text/javascript" src="lib/facebook-js-sdk.js"></script>
 			
 			<!--jQuery & Google Maps -->
 			<script src="static/js/vendor/jquery.js"></script>

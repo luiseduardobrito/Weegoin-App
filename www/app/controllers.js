@@ -47,11 +47,13 @@ weegoinControllers.controller('LoginCtrl',
 
 	function($scope, $http, $location, $device, $user) {
 
-		var response = $device.prompt("Qual é o seu nome?")
+		$user.login(function(err, res) {
 
-		if(response) {
-			$user.login(response);
-		}
+			if(err)
+				console.log(err)
+			else
+				console.log(res)
+		})
 
 		$location.path("places");
 	}

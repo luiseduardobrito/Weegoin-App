@@ -6,7 +6,11 @@ weegoinControllers.controller('MainMenuCtrl',
 
 	function($scope, $http, $location, $user) {
 
-		$scope.$watch($user.me, function(val) {
+		$scope.me = function(){
+			return $user.me();
+		}
+
+		$scope.$watch('me()', function(val) {
 			$scope.user = val
 		})
 
@@ -14,13 +18,11 @@ weegoinControllers.controller('MainMenuCtrl',
 
 		$scope.items = [
 
-			{n: 0, label: "Entrar", value: "login"},
 			{n: 1, label: "Estabelecimentos", value: "places"},
 			{n: 2, label: "Calendário", value: "calendar"},
 			{n: 3, label: "Perfil", value: "profile"},
 			{n: 4, label: "Configurações", value: "settings"},
-			{n: 5, label: "Contato", value: "contact"},
-			{n: 6, label: "Sair", value: "logout"},
+			{n: 5, label: "Contato", value: "contact"}
 		]
 
 		$scope.state = function(s) {
@@ -45,11 +47,13 @@ weegoinControllers.controller('LoginCtrl',
 
 	function($scope, $http, $location, $device, $user) {
 
-		var response = $device.prompt("Qual é o seu nome?")
+		$user.login(function(err, res) {
 
-		if(response) {
-			$user.login(response);
-		}
+			if(err)
+				console.log(err)
+			else
+				console.log(res)
+		})
 
 		$location.path("places");
 	}
@@ -57,16 +61,14 @@ weegoinControllers.controller('LoginCtrl',
 
 weegoinControllers.controller('LogoutCtrl', 
 
-	['$scope', '$http', '$location', 'device', 'storageService',
+	['$scope', '$http', '$location', 'device', 'user',
 
-	function($scope, $http, $location, $device, $storage) {
+	function($scope, $http, $location, $device, $user) {
 
 		var response = $device.confirm("Tem certeza que deseja sair?")
 
 		if(response) {
-
-			$storage.clear();
-			$device.alert("Seus dados foram removidos do dispositivo com sucesso!");
+			$user.logout();
 		}
 
 		$location.path("places");

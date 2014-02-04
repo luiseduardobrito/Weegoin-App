@@ -1,4 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">weegoin</string>
+    <string name="APP_ID">1446634675566039</string>
+    <string name="APP_NAME">Weegoin</string>
 </resources>
