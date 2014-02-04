@@ -229,10 +229,11 @@ weegoinServices.factory("user",
 
 					console.log("fb_init")
 
-					FB.init({
-						appId: "appid", 
-						nativeInterface: CDV.FB, 
-						useCachedDialogs: false 
+					FB.init({ 
+						appId: '1446634675566039',
+						status: true,
+						useCachedDialogs: true,
+						nativeInterface: CDV.FB
 					});
 
 				} catch (e) {

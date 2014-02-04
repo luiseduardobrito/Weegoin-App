@@ -24,6 +24,9 @@
     <feature name="Notification">
         <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
+    <feature name="org.apache.cordova.facebook.Connect">
+        <param name="android-package" value="org.apache.cordova.facebook.ConnectPlugin" />
+    </feature>
     <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
@@ -64,5 +67,10 @@
     <gap:splash gap:platform="ios" height="768" src="res/screen/ios/screen-ipad-landscape.png" width="1024" />
     <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <gap:plugin name="nl.x-services.plugins.socialsharing" version="3.6" />
-    <access origin="http://127.0.0.1*" />
+    <gap:plugin name="org.apache.cordova.facebook.connectplugin" />
+    <access origin="https://m.facebook.com" subdomains="true" />
+    <access origin="https://graph.facebook.com" subdomains="true" />
+    <access origin="https://api.facebook.com" subdomains="true" />
+    <access origin="https://*.fbcdn.net" subdomains="true" />
+    <access origin="https://*.akamaihd.net" subdomains="true" />
 </widget>
